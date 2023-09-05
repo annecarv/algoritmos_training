@@ -21,27 +21,3 @@ A primeira e única linha da entrada contém 4 inteiros, P1, C1, P2 e C2, (10 �
 
 Saída
 Se a gangorra estiver equilibrada, imprima ‘0’. Se ela estiver desequilibrada de modo que a criança esquerda esteja na parte de baixo, imprima ‘-1’, senão, imprima ‘1’.
-
-### Top N
-The regional phase of the SBC Programming Contest happened recently, where more than 600 teams participated in more than 40 cities around Brazil. Your friend competed, and when asked about his position he told you: “I got placed in the top 10”.
-
-You were happy for your friend, but you could not stop asking yourself about what was his real position. “Top 10” could mean any position between first and tenth placed, however if he had placed first he would have said “Top 1”, if he had placed second or third he would have said “Top 3”, and if he had placed fourth or fifth he would have said “Top 5”. Therefore, his real position was between sixth and tenth, because people tend to put themselves in the lowest category they belong.
-
-You gathered all the categories people most use: 1, 3, 5, 10, 25, 50 and 100. Given a position K, write an algorithm that says the number of the lowest category this position belongs.
-
-Input
-Each test case has one integer K, representing a position (1 ≤ K ≤ 100).
-
-Output
-For each test case you should print one line with the sentence “Top N”, and replace N by the number of the lowest category the position K belongs.
-
-### Chocolate Factory
-One factory produces chocolate bars in cubes and parallelepipeds with the same volume. However, since the machine that produces chocolate cubes has been showing some problems, the owners asked you for help to fix this problems.
-
-Your task is, given the size of the edges of the parallelepipeds chocolate, inform the size the edge of the cube form should have.
-
-Input
-The input contains several test cases. The first line of each test case contains three integers A, B and C (1 ≤ A, B, C ≤ 103), indicating the size of the edges of the parallelepiped. The input ends when A = B = C = 0, and should not be processed.
-
-Output
-For each input, you must print an integer that should be truncated, representing the size that the edge in cube form should have.
