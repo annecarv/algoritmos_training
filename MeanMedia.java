@@ -6,17 +6,22 @@ public class MeanMedia {
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
 
-            while (true) {
-                int A = scanner.nextInt();
-                int B = scanner.nextInt();
+            System.out.println("Digite A: ");
+            int a = scanner.nextInt();
+            System.out.println("Digite B: ");
+            int b = scanner.nextInt();
 
-                if (A == 0 && B == 0) {
-                    break;
-                }
+            while (a != 0 && b != 0) {
 
-                int C = 3 * B - A;
+                int c = 2 * a - b;
 
-                System.out.println(C);
+                System.out.println(c);
+
+                System.out.println("Digite A: ");
+                a = scanner.nextInt();
+                System.out.println("Digite B: ");
+                b = scanner.nextInt();
+
             }
         }
     }
