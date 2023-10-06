@@ -3,28 +3,26 @@ package challenge;
 import java.util.ArrayList;
 
 public class Carrinho  {
-    public double desconto;
-    public static double frete = 15;
-    public static double subtotal;
-    public static double total;
-    static public int quantidade;
-    public String cupom;
-    public static boolean idExistente = false;
+
+    private static double frete = 15;
+    private double subtotal;
+    private int quantidade;
+    private boolean idExistente = false;
+    private ArrayList<Produto> carrinho = new ArrayList<>(Produto.produtos);
     Produto produto;
-    public static ArrayList<Carrinho> carrinho = new ArrayList<Carrinho>();
 
-    public Carrinho(int id, Produto produto) {
-        carrinho.add(this);
+    //É OBRIGATORIO UMA CLASSE TER CONSTRUTOR???
+    public Carrinho() {
+        this.carrinho = new ArrayList<Produto>();
     }
+    public void adicionarProdutoAoCarrinho(int id, int quantidade)  {
 
-    public static void adicionarProdutoAoCarrinho(int id, int quantidade)  {
-
-        for (Produto p : Produto.produtos) {
+        for (Produto p : produto.getProdutos()) {
             if (p.getId() == id) {
                 setQuantidade(getQuantidade() + quantidade);
+                carrinho.add(p);
                 System.out.println("Produto adicionado ao carrinho.");
-                Carrinho.setIdExistente(true);
-                carrinho.add(Produto.produtos.get(id));
+                setIdExistente(true);
                 break;
             }
             if (!getIdExistente()) {
@@ -37,98 +35,53 @@ public class Carrinho  {
     public String toString() {
         return "Confira seu carrinho: \n" +
                 "frete:" + Carrinho.getFrete() + '\n' +
-                ", subtotal:" + Carrinho.getSubtotal() + '\n' +
-                ", total:" + Carrinho.getTotal() + '\n' +
-                ", produtos:" + carrinho
+                ", subtotal:" + getSubtotal() + '\n' +
+                ", produtos:" + getCarrinho()
                 ;
     }
-
-    public static void adicionarCupom() {
+    public void calcularFrete() {
     }
-
-    public static void verificarCupom() {
-    }
-
-    public static void calcularFrete() {
-    }
-
-    public static void calcularValorTotal() { //double, editar depois
-    }
-
-    public static void removerDoCarrinho() {
+    public void removerDoCarrinho() {
 
     }
-
-    public static boolean getIdExistente() {
+    public boolean getIdExistente() {
         return idExistente;
     }
-
-    public static void setIdExistente(boolean idExistente) {
-        Carrinho.idExistente = idExistente;
+    public void setIdExistente(boolean idExistente) {
+        this.idExistente = idExistente;
     }
-
-    public double getDesconto() {
-        return desconto;
-    }
-
-    public void setDesconto(double desconto) {
-        this.desconto = desconto;
-    }
-
     public static double getFrete() {
         return frete;
     }
-
-    public void setFrete(double frete) {
-        this.frete = frete;
+    public static void setFrete(double frete) {
+        Carrinho.frete = frete;
     }
-
-    public static double getSubtotal() {
+    public double getSubtotal() {
         return subtotal;
     }
-
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
-
-    public static double getTotal() {
-        return total;
+    public boolean isIdExistente() {
+        return idExistente;
     }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public static int getQuantidade() {
+    public int getQuantidade() {
         return quantidade;
     }
-
-    public static void setQuantidade(int quantidade) {
-        Carrinho.quantidade = quantidade;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
-
-    public String getCupom() {
-        return cupom;
-    }
-
-    public void setCupom(String cupom) {
-        this.cupom = cupom;
-    }
-
     public Produto getProduto() {
         return produto;
     }
-
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-
-    public static ArrayList<Carrinho> getCarrinho() {
+    public ArrayList<Produto> getCarrinho() {
         return carrinho;
     }
-
-    public static void setCarrinho(ArrayList<Carrinho> carrinho) {
-        Carrinho.carrinho = carrinho;
+    public void setCarrinho(ArrayList<Produto> carrinho) {
+        this.carrinho = carrinho;
     }
 
 }

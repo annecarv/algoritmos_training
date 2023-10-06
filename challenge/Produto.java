@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 public class Produto {
 
-    public String nomeProduto, taxonomia;
-    public double precoUnitario;
-    public int quantidade;
+    private String nomeProduto, taxonomia;
+    private double precoUnitario;
+    private int quantidade;
+
+    //Métodos estáticos só usam atributos estáticos
+    //Métodos não estáticos usam atributos estásticos ou nao
     // nextId é estático pois será compartilhando entre todas as suas instâncias
     private static int nextId = 1;
     private int id;  // ID da instância atual
@@ -20,6 +23,7 @@ public class Produto {
         this.taxonomia = taxonomia;
         this.precoUnitario = precoUnitario;
         produtos.add(this);
+        setProdutos(produtos);
     }
 
     @Override
@@ -31,12 +35,32 @@ public class Produto {
                 "ID: " + this.id ;
     }
 
+    public static int getNextId() {
+        return nextId;
+    }
 
+    public static void setNextId(int nextId) {
+        Produto.nextId = nextId;
+    }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
+        this.id = id;
+    }
+
+    public Produto getProdutoById(int id) {
+        for (Produto p : produtos) {
+            if(p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public void setProdutoById(int id) {
         this.id = id;
     }
 
@@ -72,11 +96,13 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public static ArrayList<Produto> getProdutos() {
+    //atributos publicos podem ter getters and seters?
+
+    public ArrayList<Produto> getProdutos() {
         return produtos;
     }
 
-    public static void setProdutos(ArrayList<Produto> produtos) {
+    public void setProdutos(ArrayList<Produto> produtos) {
         Produto.produtos = produtos;
     }
 }
