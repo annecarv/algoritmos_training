@@ -8,13 +8,10 @@ public class Produto {
     private double precoUnitario;
     private int quantidade;
 
-    //Métodos estáticos só usam atributos estáticos
-    //Métodos não estáticos usam atributos estásticos ou nao
-    // nextId é estático pois será compartilhando entre todas as suas instâncias
     private static int nextId = 1;
-    private int id;  // ID da instância atual
+    private int id;
 
-    public static ArrayList<Produto> produtos = new ArrayList<Produto>();
+    private static ArrayList<Produto> produtos = new ArrayList<>();
 
     public Produto(String nomeProduto, String taxonomia, double precoUnitario) {
         this.id = nextId;
@@ -23,15 +20,13 @@ public class Produto {
         this.taxonomia = taxonomia;
         this.precoUnitario = precoUnitario;
         produtos.add(this);
-        setProdutos(produtos);
     }
 
     @Override
     public String toString() {
-        return
-                 this.nomeProduto  +  " " +
-                "Setor: " + this.taxonomia +  " " +
-                "R$ " + this.precoUnitario +  " " +
+        return this.nomeProduto  + " " +
+                "Setor: " + this.taxonomia + " " +
+                "R$ " + this.precoUnitario + " " +
                 "ID: " + this.id ;
     }
 
@@ -51,17 +46,13 @@ public class Produto {
         this.id = id;
     }
 
-    public Produto getProdutoById(int id) {
+    public static Produto getProdutoById(int id) {
         for (Produto p : produtos) {
             if(p.getId() == id) {
                 return p;
             }
         }
         return null;
-    }
-
-    public void setProdutoById(int id) {
-        this.id = id;
     }
 
     public String getNomeProduto() {
@@ -96,15 +87,11 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    //atributos publicos podem ter getters and seters?
-
-    public ArrayList<Produto> getProdutos() {
+    public static ArrayList<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(ArrayList<Produto> produtos) {
+    public static void setProdutos(ArrayList<Produto> produtos) {
         Produto.produtos = produtos;
     }
 }
-
-

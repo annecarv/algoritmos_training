@@ -11,7 +11,7 @@ public class Menu {
         while (true) {
             System.out.println("---- Bem Vindo ao Desconto Combado ----");
             System.out.println("CONFIRA NOSSOS PRODUTOS!");
-            System.out.println(Produto.produtos.toString());
+            System.out.println(Produto.getProdutos().toString());
             System.out.println("---- Compre Agora! ----");
             System.out.println("1. Adicionar Produto ao Carrinho");
             System.out.println("2. : ");

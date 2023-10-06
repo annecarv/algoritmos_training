@@ -8,7 +8,7 @@ public class Carrinho  {
     private double subtotal;
     private int quantidade;
     private boolean idExistente = false;
-    private ArrayList<Produto> carrinho = new ArrayList<>(Produto.produtos);
+    private ArrayList<Produto> carrinho = new ArrayList<>(Produto.getProdutos());
     Produto produto;
 
     //É OBRIGATORIO UMA CLASSE TER CONSTRUTOR???
