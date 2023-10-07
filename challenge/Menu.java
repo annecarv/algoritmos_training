@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     Produto produtos;
-    Carrinho carrinho;
+    Carrinho carrinho = new Carrinho();
     public Menu() {
         while (true) {
             System.out.println("---- Bem Vindo ao Desconto Combado ----");
@@ -28,17 +28,14 @@ public class Menu {
                     int id = scanner.nextInt();
                     System.out.print("Digite a quantidade:  ");
                     int quantidade = scanner.nextInt();
-                    Carrinho carrinho = new Carrinho();
                     carrinho.adicionarProdutoAoCarrinho(id, quantidade);
-                    System.out.println("Confira seu carrinho: \n" +
-                            "frete:" + Carrinho.getFrete() + '\n' +
-                            ", subtotal:" + carrinho.getSubtotal() + '\n' +
-                            ", produtos:" + carrinho.getCarrinho());
+                    System.out.println(carrinho.toString());
                     //DÚVIDA PQ PARA INSTANCIAR O MÉTODO ESTATICO DO GET CARRINHO EU USO Carrinho.getFrete() e metodos nao estaticos uso arrinho.getSubtotal()
                     continue;
                 case 2:
                     continue;
                 case 3:
+                    System.out.println(carrinho.toString());
                     continue;
                 case 4:
                     continue;

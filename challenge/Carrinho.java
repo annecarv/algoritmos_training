@@ -2,12 +2,15 @@ package challenge;
 
 import java.util.ArrayList;
 
+import static challenge.Produto.getProdutoById;
+import static challenge.Produto.getProdutoByIdBoolean;
+
 public class Carrinho  {
 
     private static double frete = 15;
     private double subtotal;
     private int quantidade;
-    private boolean idExistente = false;
+    //private boolean idExistente = false;
     private ArrayList<Produto> carrinho = new ArrayList<>(Produto.getProdutos());
     Produto produto;
 
@@ -15,40 +18,31 @@ public class Carrinho  {
     public Carrinho() {
         this.carrinho = new ArrayList<Produto>();
     }
-    public void adicionarProdutoAoCarrinho(int id, int quantidade)  {
+    public void adicionarProdutoAoCarrinho(int id, int quantidade) {
+        boolean produtoExistente = getProdutoByIdBoolean(id);
 
-        for (Produto p : produto.getProdutos()) {
-            if (p.getId() == id) {
-                setQuantidade(getQuantidade() + quantidade);
-                carrinho.add(p);
-                System.out.println("Produto adicionado ao carrinho.");
-                setIdExistente(true);
-                break;
-            }
-            if (!getIdExistente()) {
-                System.out.println("Produto não localizado.");
-            }
+        if (produtoExistente) {
+            setQuantidade(getQuantidade() + quantidade);
+            Produto produto = getProdutoById(id);
+            setCarrinho(produto);
+            System.out.println("Produto adicionado ao carrinho.");
+        } else {
+            System.out.println("Produto não localizado.");
         }
     }
 
     @Override
     public String toString() {
         return "Confira seu carrinho: \n" +
-                "frete:" + Carrinho.getFrete() + '\n' +
-                ", subtotal:" + getSubtotal() + '\n' +
-                ", produtos:" + getCarrinho()
+                "Frete:" + Carrinho.getFrete() + '\n' +
+                "Subtotal:" + getSubtotal() + '\n' +
+                "Produtos:" + getCarrinho()
                 ;
     }
     public void calcularFrete() {
     }
     public void removerDoCarrinho() {
 
-    }
-    public boolean getIdExistente() {
-        return idExistente;
-    }
-    public void setIdExistente(boolean idExistente) {
-        this.idExistente = idExistente;
     }
     public static double getFrete() {
         return frete;
@@ -62,26 +56,18 @@ public class Carrinho  {
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
-    public boolean isIdExistente() {
-        return idExistente;
-    }
     public int getQuantidade() {
         return quantidade;
     }
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-    public Produto getProduto() {
-        return produto;
-    }
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
+
     public ArrayList<Produto> getCarrinho() {
         return carrinho;
     }
-    public void setCarrinho(ArrayList<Produto> carrinho) {
-        this.carrinho = carrinho;
+    public void setCarrinho(Produto produto) {
+        this.carrinho.add(produto);
     }
 
 }

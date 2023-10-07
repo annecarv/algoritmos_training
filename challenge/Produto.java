@@ -7,7 +7,9 @@ public class Produto {
     private String nomeProduto, taxonomia;
     private double precoUnitario;
     private int quantidade;
-
+    //Métodos estáticos só usam atributos estáticos
+    //Métodos não estáticos usam atributos estásticos ou nao
+    // nextId é estático pois será compartilhado entre todas as suas instâncias
     private static int nextId = 1;
     private int id;
 
@@ -30,20 +32,17 @@ public class Produto {
                 "ID: " + this.id ;
     }
 
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        Produto.nextId = nextId;
-    }
-
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public static boolean getProdutoByIdBoolean(int id) {
+        for (Produto p : produtos) {
+            if(p.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static Produto getProdutoById(int id) {
