@@ -14,18 +14,34 @@ public class Carrinho  {
     private ArrayList<Produto> carrinho = new ArrayList<>(Produto.getProdutos());
     Produto produto;
 
-    //É OBRIGATORIO UMA CLASSE TER CONSTRUTOR???
+    //É OBRIGATORIO UMA CLASSE TER CONSTRUTOR??? DUVIDA
+
     public Carrinho() {
         this.carrinho = new ArrayList<Produto>();
     }
     public void adicionarProdutoAoCarrinho(int id, int quantidade) {
+
         boolean produtoExistente = getProdutoByIdBoolean(id);
 
         if (produtoExistente) {
-            setQuantidade(getQuantidade() + quantidade);
+
             Produto produto = getProdutoById(id);
-            setCarrinho(produto);
+
+            setQuantidade(getQuantidade() + quantidade);
+
+            if (quantidade > 100) {
+                double percentualDesconto = produto.getPrecoUnitario() * 0.02;
+                produto.setPrecoUnitario(produto.getPrecoUnitario() - percentualDesconto);
+                System.out.println("Obaaaa! Você ganhou um desconto de R$ " + percentualDesconto + " por produto. ");
+            }
+
             System.out.println("Produto adicionado ao carrinho.");
+
+            setSubtotal(produto.getPrecoUnitario() * quantidade);
+            setCarrinho(produto);
+            calcularFrete();
+
+
         } else {
             System.out.println("Produto não localizado.");
         }
@@ -33,13 +49,25 @@ public class Carrinho  {
 
     @Override
     public String toString() {
-        return "Confira seu carrinho: \n" +
-                "Frete:" + Carrinho.getFrete() + '\n' +
-                "Subtotal:" + getSubtotal() + '\n' +
-                "Produtos:" + getCarrinho()
+        return "-------------------------------------------------------------- \n" +
+                "Confira seu carrinho \n" +
+                "Frete R$:" + Carrinho.getFrete() + '\n' +
+                "Subtotal R$:" + getSubtotal() + '\n' +
+                "Produtos: " + getCarrinho().toString() + '\n' +
+                "Quantidade: " + getQuantidade() + '\n' +
+                "-------------------------------------------------------------- \n"
                 ;
     }
-    public void calcularFrete() {
+
+    //Caso o valor ANTES dos descontos seja acima de 299 o frete é grátis - O CORRETO SERIA DEPOIS??? ENFIM, PEGADINHA SERÁ ? DUVIDAS
+    public double calcularFrete() {
+        if (getSubtotal() > 299.0) {
+            setFrete(0);
+            double freteAtualizado = getFrete();
+            System.out.println("FRETE GRÁTIS, APROVEITE.");
+            return freteAtualizado;
+        }
+       return getFrete();
     }
     public void removerDoCarrinho() {
 
@@ -47,14 +75,16 @@ public class Carrinho  {
     public static double getFrete() {
         return frete;
     }
+
     public static void setFrete(double frete) {
         Carrinho.frete = frete;
     }
     public double getSubtotal() {
         return subtotal;
     }
-    public void setSubtotal(double subtotal) {
+    public double setSubtotal(double subtotal) {
         this.subtotal = subtotal;
+        return subtotal;
     }
     public int getQuantidade() {
         return quantidade;

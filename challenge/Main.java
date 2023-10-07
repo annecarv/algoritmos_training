@@ -6,7 +6,9 @@ import java.util.List;
 public class Main {
         public static void main(String[] args) {
 
-                Produto produto;
+                //Pq fica duplicando os produtos???? Dúvida
+                Produto produto1 = new Produto("Teste", "Vestuário", 300);
+                Produto.getProdutos().add(produto1);
 
                 Produto.getProdutos().add(new Produto("Calça Jeans", "Vestuário", 300));
                 Produto.getProdutos().add(new Produto("Blusinha", "Vestuário", 50));
