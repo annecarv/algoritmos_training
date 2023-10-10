@@ -40,8 +40,6 @@ public class Carrinho  {
             setSubtotal(produto.getPrecoUnitario() * quantidade);
             setCarrinho(produto);
             calcularFrete();
-
-
         } else {
             System.out.println("Produto não localizado.");
         }

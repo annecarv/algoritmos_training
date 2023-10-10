@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     Produto produtos;
-    Pagamento pagamento;
+    Pagamento pagamento = new Pagamento();
     Carrinho carrinho = new Carrinho();
 
     public Menu() {
@@ -40,6 +40,7 @@ public class Menu {
                     continue;
                 case 3:
                     pagamento.calcularValorTotal();
+                    pagamento.menuPagamento();
                     continue;
                 case 5:
                     System.out.println("Obrigado por visitar nossa loja!");
