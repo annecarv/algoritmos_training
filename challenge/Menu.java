@@ -34,10 +34,18 @@ public class Menu {
                     carrinho.adicionarProdutoAoCarrinho(id, quantidade);
                     System.out.println(carrinho.toString());
                     //DÚVIDA PQ PARA INSTANCIAR O MÉTODO ESTATICO DO GET CARRINHO EU USO Carrinho.getFrete() e metodos nao estaticos uso arrinho.getSubtotal()
-                    continue;
+                    System.out.println("Deseja voltar ao menu principal?  ");
+                    String resposta = scanner.next().toLowerCase();
+                    if (resposta.equals("sim")) {
+                        continue;
+                    }
                 case 2:
                     System.out.println(carrinho.toString());
-                    continue;
+                    System.out.println("Deseja voltar ao menu principal?  ");
+                    resposta = scanner.next().toLowerCase();
+                    if (resposta.equals("sim")) {
+                        continue;
+                    }
                 case 3:
                     pagamento.calcularValorTotal();
                     pagamento.menuPagamento();

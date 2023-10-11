@@ -1,10 +1,10 @@
 package challenge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static challenge.Produto.getProdutos;
 public class Pagamento {
     private String cupom;
     private double desconto;
@@ -13,34 +13,73 @@ public class Pagamento {
     List<String> cuponsDisponiveis = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
     Carrinho carrinho = new Carrinho();
-    Produto produto;
+    Produto produto = new Produto();
+
     public String adicionarCupom() {
-        System.out.print("Deseja inserir um cupom?");
+        System.out.println("Deseja inserir um cupom?");
         String cupom = scanner.next();
-        validarCupom(cupom);
+
+        if (!validarCupomDigitado(cupom)) {
+            System.out.println("Cupom inválido.");
+            return null;
+        }
         return cupom;
     }
 
-    public void validarCupom(String cupom) {
+    public Boolean validarCupomDigitado(String cupom) {
 
+        catalogoCupons(); //Cria a lista de cupons.
+
+        for (String c : cuponsDisponiveis) {
+            if (cupom.equalsIgnoreCase(c)) {
+                validacaoDescontoCupons();
+                return true;
+            }
+            System.err.println(c);
+        }
+        return false;
     }
+    public void catalogoCupons() {
 
-    public String formatacaoTaxonomia(String s) {
-        if (s.length() >= 3) {
-            String desc10 = s.substring(0, 3) + "10";
-            String desc20 = s.substring(0, 3) + "20";
-            String desc30 = s.substring(0, 3) + "30";
+        cuponsDisponiveis.add("PrimeiraCompra");
+
+        for (Produto p : getProdutos()) {
+            String desc10 = p.getTaxonomia().substring(0, 3) + "10";
+            String desc20 = p.getTaxonomia().substring(0, 3) + "20";
+            String desc30 = p.getTaxonomia().substring(0, 3) + "30";
 
             cuponsDisponiveis.add(desc10);
             cuponsDisponiveis.add(desc20);
             cuponsDisponiveis.add(desc30);
         }
-        return s;
+
     }
 
-    public void catalogoCupons() {
-        cuponsDisponiveis.add("PrimeiraCompra");
+    public void validacaoDescontoCupons() {
+        for (String c : cuponsDisponiveis) {
+            if (c.endsWith("10")) {
+                setValorTotal(getValorTotal() - (getValorTotal() * 0.10));
+                System.out.println("Cupom " + c +" adicionado.");
+                System.out.println("WOW! DESCONTO DE 10%");
+                break;
+            } else if (c.endsWith("20")) {
+                setValorTotal(getValorTotal() - (getValorTotal() * 0.20));
+                System.out.println("Cupom " + c +" adicionado.");
+                System.out.println("WOW! DESCONTO DE 20%");
+                break;
+            } else if (c.endsWith("30")) {
+                setValorTotal(getValorTotal() - (getValorTotal() * 0.30));
+                System.out.println("Cupom " + c +" adicionado.");
+                System.out.println("WOW! DESCONTO DE 30%");
 
+                break;
+            } else if (c.contentEquals("PrimeiraCompra")) {
+                setValorTotal(getValorTotal() - (getValorTotal() * 0.10));
+                System.out.println("Cupom " + c +" adicionado.");
+                System.out.println("WOW, DESCONTO DE 10% NA PRIMEIRA COMPRA!");
+                break;
+            }
+        }
     }
 
     public void descontoPix() {
@@ -55,12 +94,11 @@ public class Pagamento {
         double totalCarrinho = carrinho.getSubtotal();
 
         //DO MAIOR PARA O MENOR
-         if (totalCarrinho > 1.999) {
+        if (totalCarrinho > 1.999) {
             double percentualDesconto = totalCarrinho * 0.10;
             double subTotalAtualizado = carrinho.setSubtotal(percentualDesconto);
             setValorTotal(subTotalAtualizado);
-         }
-         else if (totalCarrinho > 999) {
+        } else if (totalCarrinho > 999) {
             double percentualDesconto = totalCarrinho * 0.05;
             double subTotalAtualizado = carrinho.setSubtotal(percentualDesconto);
             setValorTotal(subTotalAtualizado);

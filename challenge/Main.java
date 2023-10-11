@@ -24,5 +24,7 @@ public class Main {
                 Produto.getProdutos().add(new Produto("Coup", "Jogos", 99.90));
 
                 Menu menu = new Menu();
+
+
             }
         }

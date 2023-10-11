@@ -14,8 +14,6 @@ public class Carrinho  {
     private ArrayList<Produto> carrinho = new ArrayList<>(Produto.getProdutos());
     Produto produto;
 
-    //É OBRIGATORIO UMA CLASSE TER CONSTRUTOR??? DUVIDA
-
     public Carrinho() {
         this.carrinho = new ArrayList<Produto>();
     }
