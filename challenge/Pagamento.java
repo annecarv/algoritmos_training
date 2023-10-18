@@ -90,10 +90,13 @@ public class Pagamento {
         setValorTotal(getValorTotal() - (getValorTotal() * 0.05));
     }
 
+    public void finalizarPagamento() {
+        System.out.println("Pagamento Finalizado");
+    }
+
     public double calcularValorTotal() {
         double totalCarrinho = carrinho.getSubtotal();
 
-        //DO MAIOR PARA O MENOR
         if (totalCarrinho > 1.999) {
             double percentualDesconto = totalCarrinho * 0.10;
             double subTotalAtualizado = carrinho.setSubtotal(percentualDesconto);
@@ -122,16 +125,22 @@ public class Pagamento {
 
             switch (opcao) {
                 case 1:
+                    descontoPix();
                     adicionarCupom();
+                    finalizarPagamento();
                     continue;
                 case 2:
+                    descontoBoleto();
                     adicionarCupom();
+                    finalizarPagamento();
                     continue;
                 case 3:
                     adicionarCupom();
+                    finalizarPagamento();
                     continue;
                 case 4:
                     adicionarCupom();
+                    finalizarPagamento();
                     continue;
                 case 5:
                     System.out.println("Seu carrinho ficará salvo para quando desejar finalizar a compra.");
@@ -143,12 +152,9 @@ public class Pagamento {
         }
 
     }
-
     public double getValorTotal() {
         return valorTotal;
     }
-
-    //DÚVIDA SETTERS PODEM RETORNAR VALORES???
     public double setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
         return valorTotal;

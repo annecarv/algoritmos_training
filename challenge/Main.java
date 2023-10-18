@@ -9,7 +9,6 @@ public class Main {
                 //Pq fica duplicando os produtos???? Dúvida
                 Produto produto1 = new Produto("Teste", "Vestuário", 300);
                 Produto.getProdutos().add(produto1);
-
                 Produto.getProdutos().add(new Produto("Calça Jeans", "Vestuário", 300));
                 Produto.getProdutos().add(new Produto("Blusinha", "Vestuário", 50));
                 Produto.getProdutos().add(new Produto("Celular Xaiane", "Eletrônicos", 1999));
