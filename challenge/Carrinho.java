@@ -54,8 +54,6 @@ public class Carrinho  {
                 "-------------------------------------------------------------- \n"
                 ;
     }
-
-    //Caso o valor ANTES dos descontos seja acima de 299 o frete é grátis - O CORRETO SERIA DEPOIS??? ENFIM, PEGADINHA SERÁ ? DUVIDAS
     public double calcularFrete() {
         if (getSubtotal() > 299.0) {
             setFrete(0);

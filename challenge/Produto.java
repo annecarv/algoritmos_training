@@ -14,7 +14,6 @@ public class Produto {
     private int id;
 
     private static ArrayList<Produto> produtos = new ArrayList<>();
-    //DUVIDA PODE TER DOIS CONSTRUTORES?
     public Produto() {
     }
     public Produto(String nomeProduto, String taxonomia, double precoUnitario) {
